@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terminal Macro Definitiva</title>
+    <title>Macro Terminal V4 - Operativa</title>
     <style>
-        body { font-family: sans-serif; background: #0d1117; color: white; margin: 0; padding: 10px; }
-        .container { width: 98%; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        .row { display: grid; grid-template-columns: 1fr 450px; gap: 15px; }
-        .box { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 15px; }
-        h2 { color: #58a6ff; font-size: 14px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid #30363d; padding-bottom: 5px; }
-        h1 { text-align: center; font-weight: 300; color: #f0f6fc; margin: 10px 0; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: #0b0e11; color: #e1e4e8; margin: 0; padding: 15px; }
+        .dashboard { max-width: 1600px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        .row { display: grid; grid-template-columns: 1fr 450px; gap: 20px; }
+        .box { background: #15191e; border: 1px solid #2d333b; border-radius: 12px; padding: 15px; overflow: hidden; }
+        h2 { color: #58a6ff; font-size: 14px; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid #2d333b; padding-bottom: 8px; }
+        h1 { text-align: center; font-weight: 300; margin-bottom: 25px; }
+        /* Ajuste para que el widget de Investing se vea bien */
+        .investing-container { width: 100%; height: 800px; overflow: hidden; border-radius: 8px; }
     </style>
 </head>
 <body>
 
-    <h1>TERMINAL GLOBAL MACRO - DATOS EN VIVO</h1>
+    <h1>MACRO DASHBOARD PROFESIONAL</h1>
 
-    <div class="container">
+    <div class="dashboard">
         
-        <!-- SECCIÓN 1: SENTIMIENTO Y NOTICIAS -->
+        <!-- PARTE SUPERIOR: SENTIMIENTO Y HEATMAP -->
         <div class="row">
             <div class="box">
-                <h2>Fortaleza de Divisas (Heatmap)</h2>
+                <h2>Fortaleza de Divisas (TradingView)</h2>
                 <div class="tradingview-widget-container">
                     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
                     {
@@ -37,41 +39,31 @@
             </div>
 
             <div class="box">
-                <h2>Calendario de Alto Impacto (NFP/Tasas)</h2>
+                <h2>Análisis de Bonos (Refugio)</h2>
                 <div class="tradingview-widget-container">
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
                     {
-                      "colorTheme": "dark",
+                      "symbol": "TVC:US10Y",
                       "width": "100%",
                       "height": "400",
                       "locale": "es",
-                      "importanceFilter": "1",
-                      "currencyFilter": "USD,EUR,JPY,GBP,AUD,CAD,CHF,NZD"
+                      "dateRange": "12M",
+                      "colorTheme": "dark",
+                      "isTransparent": true
                     }
                     </script>
                 </div>
             </div>
         </div>
 
-        <!-- SECCIÓN 2: EL DASHBOARD DE DATOS (ESTE NO FALLA) -->
+        <!-- PARTE INFERIOR: CALENDARIO DE INVESTING (PIB, NFP, TASAS) -->
         <div class="box">
-            <h2>Indicadores Económicos: PIB, Desempleo, Tasas y PMI</h2>
-            <div class="tradingview-widget-container">
-                <!-- Usamos el Economic Calendar Widget configurado como tabla de datos -->
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
-                {
-                  "colorTheme": "dark",
-                  "isMaximized": true,
-                  "width": "100%",
-                  "height": "1000",
-                  "locale": "es",
-                  "importanceFilter": "1",
-                  "currencyFilter": "USD,EUR,JPY,GBP,AUD,CAD,CHF,NZD",
-                  "eventFilter": "10,20,30,40,50,60" 
-                }
-                </script>
+            <h2>Datos Macroeconómicos en Tiempo Real (Investing.com)</h2>
+            <div class="investing-container">
+                <iframe src="https://sslecal2.forexpros.com/v2/index.php?columns=exc_flags,exc_currency,exc_importance,exc_actual,exc_forecast,exc_previous&category=default&importance=3&features=datepicker,timezone&countries=5,22,10,35,7,43,37,25,11,26&calType=week&timeZone=58&lang=5" width="100%" height="800" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0"></iframe>
             </div>
         </div>
+
     </div>
 
 </body>
